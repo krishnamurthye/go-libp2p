@@ -113,3 +113,5 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	lukechampine.com/blake3 v1.4.0 // indirect
 )
+
+replace github.com/multiformats/go-multiaddr => github.com/krishnamurthye/go-multiaddr v0.15.1-0.20250605112427-d7cc99c0f8b0
