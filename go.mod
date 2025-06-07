@@ -1,6 +1,8 @@
 module github.com/libp2p/go-libp2p
 
-go 1.23.0
+go 1.23.8
+
+toolchain go1.23.10
 
 retract v0.26.1 // Tag was applied incorrectly due to a bug in the release workflow.
 
@@ -18,7 +20,7 @@ require (
 	github.com/huin/goupnp v1.3.0
 	github.com/ipfs/go-cid v0.5.0
 	github.com/ipfs/go-datastore v0.8.2
-	github.com/ipfs/go-log/v2 v2.5.1
+	github.com/ipfs/go-log/v2 v2.6.0
 	github.com/jackpal/go-nat-pmp v1.0.2
 	github.com/jbenet/go-temp-err-catcher v0.1.0
 	github.com/klauspost/compress v1.18.0
@@ -114,4 +116,4 @@ require (
 	lukechampine.com/blake3 v1.4.0 // indirect
 )
 
-replace github.com/multiformats/go-multiaddr => github.com/krishnamurthye/go-multiaddr v0.15.1-0.20250605112427-d7cc99c0f8b0
+replace github.com/multiformats/go-multiaddr => github.com/krishnamurthye/go-multiaddr v0.16.1-0.20250607101840-c87b3c0e6c6f
