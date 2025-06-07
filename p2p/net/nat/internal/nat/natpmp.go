@@ -2,6 +2,7 @@ package nat
 
 import (
 	"context"
+	"github.com/multiformats/go-multiaddr/network"
 	"net"
 	"time"
 
@@ -67,7 +68,7 @@ func (n *natpmpNAT) GetDeviceAddress() (addr net.IP, err error) {
 }
 
 func (n *natpmpNAT) GetInternalAddress() (addr net.IP, err error) {
-	ifaces, err := net.Interfaces()
+	ifaces, err := network.Interfaces()
 	if err != nil {
 		return nil, err
 	}

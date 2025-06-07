@@ -3,6 +3,7 @@ package nat
 import (
 	"context"
 	"fmt"
+	"github.com/multiformats/go-multiaddr/network"
 	"net"
 	"net/url"
 	"strings"
@@ -229,7 +230,7 @@ func (u *upnp_NAT) GetInternalAddress() (net.IP, error) {
 		return nil, err
 	}
 
-	ifaces, err := net.Interfaces()
+	ifaces, err := network.Interfaces()
 	if err != nil {
 		return nil, err
 	}
