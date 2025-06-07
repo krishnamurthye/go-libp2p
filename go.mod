@@ -116,4 +116,4 @@ require (
 	lukechampine.com/blake3 v1.4.0 // indirect
 )
 
-replace github.com/multiformats/go-multiaddr => github.com/krishnamurthye/go-multiaddr v0.16.1-0.20250607101840-c87b3c0e6c6f
+replace github.com/multiformats/go-multiaddr => github.com/krishnamurthye/go-multiaddr v0.16.1-0.20250607115009-f97720d5b531
