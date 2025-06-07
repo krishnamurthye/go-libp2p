@@ -1,6 +1,8 @@
 module github.com/libp2p/go-libp2p/test-plans/m/v2
 
-go 1.23.0
+go 1.23.8
+
+toolchain go1.23.10
 
 require (
 	github.com/go-redis/redis/v8 v8.11.5
@@ -24,7 +26,7 @@ require (
 	github.com/gorilla/websocket v1.5.3 // indirect
 	github.com/huin/goupnp v1.3.0 // indirect
 	github.com/ipfs/go-cid v0.5.0 // indirect
-	github.com/ipfs/go-log/v2 v2.5.1 // indirect
+	github.com/ipfs/go-log/v2 v2.6.0 // indirect
 	github.com/jackpal/go-nat-pmp v1.0.2 // indirect
 	github.com/jbenet/go-temp-err-catcher v0.1.0 // indirect
 	github.com/klauspost/compress v1.18.0 // indirect
