@@ -1,8 +1,6 @@
 module github.com/libp2p/go-libp2p
 
-go 1.23.8
-
-toolchain go1.23.10
+go 1.24
 
 retract v0.26.1 // Tag was applied incorrectly due to a bug in the release workflow.
 
@@ -116,4 +114,4 @@ require (
 	lukechampine.com/blake3 v1.4.0 // indirect
 )
 
-replace github.com/multiformats/go-multiaddr => github.com/krishnamurthye/go-multiaddr v0.16.1-0.20250607115009-f97720d5b531
+replace github.com/multiformats/go-multiaddr => github.com/krishnamurthye/go-multiaddr v0.16.1-0.20251129104421-b3ae263b2ae6
