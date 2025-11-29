@@ -55,10 +55,14 @@ func (s *Swarm) InterfaceListenAddresses() ([]ma.Multiaddr, error) {
 			// We're actually listening on addresses.
 			var ifaceAddrs []ma.Multiaddr
 			if addrs, err := network.InterfaceAddrs(); err == nil {
-				ifaceAddrs, err = manet.InterfaceMultiaddrsFor(addrs)
-				if err != nil {
-					s.listeners.Unlock() // Lock early exit
-					return nil, err
+				// Convert net.Addr to Multiaddr manually since InterfaceMultiaddrsFor was removed in go-multiaddr v0.16.1
+				ifaceAddrs = make([]ma.Multiaddr, len(addrs))
+				for i, a := range addrs {
+					ifaceAddrs[i], err = manet.FromNetAddr(a)
+					if err != nil {
+						s.listeners.Unlock() // Lock early exit
+						return nil, err
+					}
 				}
 			} else {
 				s.listeners.Unlock() // Lock early exit

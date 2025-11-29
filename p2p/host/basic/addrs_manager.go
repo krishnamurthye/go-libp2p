@@ -648,8 +648,15 @@ func (i *interfaceAddrsCache) updateUnlocked() {
 	var ifaceAddrs []ma.Multiaddr
 	var err error
 	var addrs []net.Addr
-	if addrs, err = network.InterfaceAddrs(); err != nil {
-		ifaceAddrs, err = manet.InterfaceMultiaddrsFor(addrs)
+	if addrs, err = network.InterfaceAddrs(); err == nil {
+		// Convert net.Addr to Multiaddr manually since InterfaceMultiaddrsFor was removed in go-multiaddr v0.16.1
+		ifaceAddrs = make([]ma.Multiaddr, len(addrs))
+		for i, a := range addrs {
+			ifaceAddrs[i], err = manet.FromNetAddr(a)
+			if err != nil {
+				break
+			}
+		}
 	}
 
 	if err != nil {
