@@ -3,6 +3,7 @@ package swarm
 import (
 	"time"
 
+	"github.com/libp2p/go-libp2p/core/network"
 	manet "github.com/multiformats/go-multiaddr/net"
 
 	ma "github.com/multiformats/go-multiaddr"
@@ -52,8 +53,23 @@ func (s *Swarm) InterfaceListenAddresses() ([]ma.Multiaddr, error) {
 		listenAddres := s.listenAddressesNoLock()
 		if len(listenAddres) > 0 {
 			// We're actually listening on addresses.
+			var ifaceAddrs []ma.Multiaddr
+			if addrs, err := network.InterfaceAddrs(); err == nil {
+				// Convert net.Addr to Multiaddr manually since InterfaceMultiaddrsFor was removed in go-multiaddr v0.16.1
+				ifaceAddrs = make([]ma.Multiaddr, len(addrs))
+				for i, a := range addrs {
+					ifaceAddrs[i], err = manet.FromNetAddr(a)
+					if err != nil {
+						s.listeners.Unlock() // Lock early exit
+						return nil, err
+					}
+				}
+			} else {
+				s.listeners.Unlock() // Lock early exit
+				return nil, err
+			}
 			var err error
-			ifaceListenAddres, err = manet.ResolveUnspecifiedAddresses(listenAddres, nil)
+			ifaceListenAddres, err = manet.ResolveUnspecifiedAddresses(listenAddres, ifaceAddrs)
 			if err != nil {
 				s.listeners.Unlock() // Lock early exit
 				return nil, err
